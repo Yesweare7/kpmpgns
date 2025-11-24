@@ -4,15 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>KPMPNGN — Pampanga Guide</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#000000">
-
-  <!-- iOS support -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-
+  <link rel="stylesheet" href="styles.css">
 
   <style>
     /* 3 dots menu styling */
@@ -125,6 +117,225 @@
       margin: 0;
       line-height: 1.5;
     }
+
+    /* =========================================
+       ENHANCED LOGIN DESIGN (Parol Theme)
+       ========================================= */
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0, 255, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 60% 20%, rgba(0, 100, 255, 0.15) 0%, transparent 50%);
+      z-index: 9999;
+    }
+
+    .login-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+    }
+
+    .login-frame {
+      position: relative;
+      width: 320px;
+      height: 600px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 30px;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .greeting {
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #FFD700;
+    }
+
+    .app-title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 0;
+    }
+
+    .app-title-logo {
+      width: 45px;
+      height: 45px;
+      animation: spin 4s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .app-title {
+      font-size: 42px;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      font-family: sans-serif;
+      background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 3s ease infinite;
+    }
+
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .login-icon {
+      margin: 20px 0 40px 0;
+    }
+
+    .login-icon img {
+      width: 100px;
+      height: 100px;
+      animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6)) 
+                drop-shadow(0 0 30px rgba(255, 0, 0, 0.4));
+      }
+      50% {
+        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 1)) 
+                drop-shadow(0 0 50px rgba(0, 255, 0, 0.6));
+      }
+    }
+
+    .input-group {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .input-group input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 50px;
+      padding: 12px;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+      outline: none;
+      box-sizing: border-box;
+      transition: box-shadow 0.2s;
+    }
+
+    .input-group input:focus {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .input-group input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 2px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 25px;
+    }
+
+    .btn-outline {
+      flex: 1;
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 50px;
+      padding: 10px;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: black;
+    }
+
+    .forgot-link {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 10px;
+      text-decoration: underline;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .forgot-link:hover {
+      color: white;
+    }
+
+    /* Enhanced App Logo (top left after login) */
+    .app-logo {
+      animation: pulse 2s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    .app-logo:hover {
+      transform: scale(1.2) rotate(15deg);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+      }
+      50% {
+        transform: scale(1.05);
+        filter: brightness(1.3) drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+      }
+    }
   </style>
 </head>
 
@@ -132,97 +343,88 @@
   
   <div id="loginOverlay" class="login-overlay">
     <div class="login-frame">
-
+      
       <div class="login-header">
         <p class="greeting">KUMUSTA CABALEN!</p>
-        <h1 class="app-title">KPMPNGN</h1>
+        <div class="app-title-container">
+          <img src="" alt="" class="app-title-logo">
+          <h1 class="app-title">KPMPNGN</h1>
+        </div>
       </div>
-
-      <!-- ⭐ FIXED LOGO ⭐ -->
+  
       <div class="login-icon">
         <img src="ParolT.png" alt="Parol Icon">
       </div>
-
-      <!-- LOGIN FORM -->
+  
       <form id="loginForm" autocomplete="off">
         <h3 style="margin:0 0 15px 0; font-size:14px; color:var(--accent);">LOG IN</h3>
-
         <div class="input-group">
           <label>USERNAME</label>
           <input type="text" id="loginUser" placeholder="Enter username" required>
         </div>
-
+  
         <div class="input-group">
           <label>PASSWORD</label>
           <input type="password" id="loginPass" placeholder="••••••••" required>
         </div>
-
+  
         <div class="button-row">
           <button type="submit" class="btn-outline">LOGIN</button>
           <button type="button" class="btn-outline" onclick="switchForm('register')">SIGN UP</button>
         </div>
-
-        <a href="#" class="forgot-link" onclick="switchForm('forgot'); return false;">FORGET PASSWORD?</a>
+  
+        <a href="#" class="forgot-link" onclick="switchForm('forgot')">FORGET PASSWORD?</a>
       </form>
 
-      <!-- REGISTER FORM -->
       <form id="registerForm" autocomplete="off" style="display:none;">
-        <h3 style="margin:0 0 15px 0; font-size:14px; color:var(--accent);">SIGN UP</h3>
-
+        <h3 style="margin:0 0 15px 0; font-size:14px; color:var(--accent);">CREATE ACCOUNT</h3>
         <div class="input-group">
-          <label>USERNAME</label>
+          <label>NEW USERNAME</label>
           <input type="text" id="regUser" placeholder="Choose username" required>
         </div>
-
+  
         <div class="input-group">
-          <label>PASSWORD</label>
+          <label>NEW PASSWORD</label>
           <input type="password" id="regPass" placeholder="••••••••" required>
         </div>
 
         <div class="button-row">
           <button type="submit" class="btn-outline">REGISTER</button>
-          <button type="button" class="btn-outline" onclick="switchForm('login')">BACK TO LOGIN</button>
+          <button type="button" class="btn-outline" onclick="switchForm('login')">BACK</button>
         </div>
       </form>
 
-      <!-- FORGOT PASSWORD FORM -->
       <form id="forgotForm" autocomplete="off" style="display:none;">
-        <h3 style="margin:0 0 15px 0; font-size:14px; color:var(--accent);">RECOVER PASSWORD</h3>
-
+        <h3 style="margin:0 0 15px 0; font-size:14px; color:var(--accent);">RECOVER ACCOUNT</h3>
+        <p style="font-size:10px; margin-bottom:15px; color:#ccc;">Enter your username to retrieve your password.</p>
+        
         <div class="input-group">
-          <label>USERNAME</label>
+          <label>YOUR USERNAME</label>
           <input type="text" id="forgotUser" placeholder="Enter username" required>
         </div>
-
+  
         <div class="button-row">
-          <button type="submit" class="btn-outline">RECOVER</button>
-          <button type="button" class="btn-outline" onclick="switchForm('login')">BACK TO LOGIN</button>
+          <button type="submit" class="btn-outline">GET PASSWORD</button>
+          <button type="button" class="btn-outline" onclick="switchForm('login')">BACK</button>
         </div>
       </form>
-
+  
     </div>
   </div>
 
-
   <div class="phone-shell app-hidden" role="application" aria-label="KPMPNGN app">
     <header class="topbar">
-      <div class="brand-wrap">
-
-        <!-- FIXED LOGO -->
-        <img src="ParolT.png" alt="KPMPNGN logo" class="app-logo"
-          style="max-width:48px; display:inline-block; vertical-align:middle; margin-right:8px;">
-        <!-- TEXT -->
-        <div class="brand-text">
+      <div class="brand-wrap" style="position: relative; width:100%;">
+        <img src="LOGO.jpg" alt="KPMPNGN logo" class="app-logo"
+          style="max-width:48px; display:inline-block; vertical-align:middle; margin-right:8px; filter:invert(1);">
+        <div style="display:inline-block; vertical-align:middle;">
           <div class="brand">KPMPNGN</div>
           <div class="subtitle">Kapampangan Travel Buddy</div>
         </div>
 
-        <!-- MENU BUTTON -->
         <button id="menuBtn" class="menu-btn" aria-label="App menu">⋮</button>
-
       </div>
     </header>
-
 
     <main class="screen">
 
@@ -242,14 +444,13 @@
       </section>
 
       <section id="municipalities" class="page">
-        <h1>LGUs</h1>
-        <p class="muted">Cities and municipalities of Pampanga.</p>
-        <div id="muni-list"></div>
+        <h2>Municipalities & Cities</h2>
+        <p class="muted">Tap an item to open image, history and map.</p>
+        <div id="muni-list" class="cards"></div>
       </section>
 
       <section id="foods" class="page">
-        <h1>Foods</h1>
-        <p class="muted">Discover the best Kapampangan cuisine.</p>
+        <h2>Kapampangan Foods</h2>
         <div class="filter-container">
           <select id="food-city-filter" class="city-filter">
             <option value="all">All Cities</option>
@@ -259,8 +460,7 @@
       </section>
 
       <section id="lodging" class="page">
-        <h1>Lodging</h1>
-        <p class="muted">Find your perfect stay in Pampanga.</p>
+        <h2>Lodging & Hotels</h2>
         <div class="filter-container">
           <select id="lodging-city-filter" class="city-filter">
             <option value="all">All Cities</option>
@@ -270,36 +470,38 @@
       </section>
 
       <section id="routes" class="page">
-        <h1>Routes</h1>
-        <p class="muted">Suggested routes and itineraries.</p>
+        <h2>Routes & Fares</h2>
+        <p class="muted">Common jeepney routes and transportation guides.</p>
+
         <div class="filter-container">
           <select id="routes-city-filter" class="city-filter">
-            <option value="all">All Cities</option>
+            <option value="all">All Areas</option>
           </select>
         </div>
+
         <div id="routes-list" class="big-card-list"></div>
       </section>
 
       <section id="map" class="page">
-        <h1>Map</h1>
-        <p class="muted">Interactive map of Pampanga.</p>
+        <h2>Map — Pampanga</h2>
         <div class="map-box">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246694.50425913726!2d120.43771765000001!3d15.079347249999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396f1e64e272d6f%3A0x8c8c12e5cdb50b8a!2sPampanga%2C%20Philippines!5e0!3m2!1sen!2sus!4v1681234567890!5m2!1sen!2sus"
-            frameborder="0" 
-            loading="lazy">
-          </iframe>
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=120.2400%2C14.7380%2C120.9230%2C15.3700&layer=mapnik"
+            loading="lazy"
+            referrerpolicy="no-referrer"></iframe>
         </div>
       </section>
 
-      <section id="attractions" class="page">
-        <h1>Attractions</h1>
-        <p class="muted">Must-visit places in Pampanga.</p>
+     <section id="attractions" class="page">
+        <h2>Tourist Attractions</h2>
+        <p class="muted">Explore Pampanga's most visited tourist spots.</p>
+
         <div class="filter-container">
           <select id="attractions-city-filter" class="city-filter">
             <option value="all">All Cities</option>
           </select>
         </div>
+
         <div id="attractions-list" class="big-card-list"></div>
       </section>
 
@@ -324,12 +526,9 @@
       <h2 id="modalTitle"></h2>
       <p id="modalDesc" class="muted"></p>
 
-      <!-- NEW CLEAN LINK UNDER DESCRIPTION -->
-      <a id="modalLink" href="#" target="_blank" class="modal-visit-link">Visit Website →</a>
-
+      <a id="modalLink" href="https://www.msn.com/en-ph/news/world/masantol-macabebe-villages-under-water/ar-AA1Q9UO0?ocid=BingNewsVerp" target="_blank" class="modal-visit-link">Visit Website →</a>
     </div>
   </div>
-
 
   <div id="missionModal" class="modal" aria-hidden="true">
     <div class="modal-card">
@@ -343,7 +542,7 @@
       <hr>
       <h2>Contact Us</h2>
       <p><strong>Company Name:</strong>Metanakan Corporation</p>
-      <p><strong>Email:</strong> <a href="mailto:info@metanakan.com">info@metanakan.com</a></p>
+      <p><strong>Email:</strong> <a href="mailto:metanakankapampangancompany@gmail.com">metanakankapampangancompany@gmail.com</a></p>
       <p><strong>Phone:</strong> <a href="tel:09945509782">NO. 0994-550-9782</a></p>
       <p><strong>Address:</strong> 20-11 Ohio Street, Villasol Subdivision, Brgy. Anunas, Angeles City</p>
       <p><strong>Facebook:</strong> <a href="https://facebook.com/kpmpngn" target="_blank">metanakankapampangan</a></p>
@@ -359,10 +558,6 @@
   </div>
 
   <script>
-    // =======================================================
-    //  AUTHENTICATION LOGIC
-    // =======================================================
-    
     function switchForm(type) {
       const loginForm = document.getElementById('loginForm');
       const regForm   = document.getElementById('registerForm');
@@ -386,7 +581,6 @@
       if(overlay) overlay.style.display = 'flex';
       if(phoneShell) phoneShell.classList.add('app-hidden');
 
-      // --- REGISTER ---
       const regForm = document.getElementById('registerForm');
       regForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -408,7 +602,6 @@
         switchForm('login');
       });
 
-      // --- LOGIN ---
       const loginForm = document.getElementById('loginForm');
       loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -425,7 +618,6 @@
         }
       });
 
-      // --- FORGOT PASSWORD ---
       const forgotForm = document.getElementById('forgotForm');
       forgotForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -440,7 +632,6 @@
         }
       });
 
-      // MISSION MODAL
       const menuBtn = document.getElementById('menuBtn');
       const missionModal = document.getElementById('missionModal');
       const closeMission = document.getElementById('closeMission');
@@ -451,7 +642,6 @@
         if (e.target === missionModal) missionModal.classList.remove('open');
       });
 
-      // FUN FACT
       const funFacts = [
         "For two years, Pampanga was once the capital of the Philippines. (1762-1764)",
         "Sisig originated in Angeles City, Pampanga.",
@@ -471,6 +661,36 @@
   </script>
 
   <script src="script.js"></script>
+
+  <script>
+    window.onload = function() {
+      const newsContainer = document.getElementById("news-list");
+      
+      if(typeof news !== 'undefined' && newsContainer) {
+        newsContainer.innerHTML = "";
+        
+        news.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "big-news-card";
+          
+          card.innerHTML = `
+            <div class="big-news-thumb" style="background-image:url('${item.image}')"></div>
+            <div class="big-news-body">
+              <h3 class="big-news-title">${item.name}</h3>
+              <p class="big-news-desc">${item.description}</p>
+            </div>
+          `;
+          
+          card.addEventListener("click", () => {
+            if(typeof openDetail === 'function') openDetail(item);
+          });
+          
+          newsContainer.appendChild(card);
+        });
+        console.log("Big News Layout applied successfully.");
+      }
+    };
+  </script>
 
 </body>
 </html>
