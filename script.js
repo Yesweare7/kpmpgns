@@ -1859,6 +1859,84 @@ address: "Sarmiento St. Malabanias, Angeles City, Pampanga",
     if(type === 'forgot') forgotForm.style.display = 'block';
   }
 
+  document.addEventListener("DOMContentLoaded", () => {
+    // Clear session on load (forces login every refresh, as per your original code)
+    sessionStorage.clear();
+    
+    const overlay = document.getElementById('loginOverlay');
+    const phoneShell = document.querySelector('.phone-shell');
+
+    // Initial State
+    if(overlay) overlay.style.display = 'flex';
+    if(phoneShell) phoneShell.classList.add('app-hidden');
+
+    // --- A. REGISTER LOGIC ---
+    const regForm = document.getElementById('registerForm');
+    regForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('regUser').value.trim();
+      const pass = document.getElementById('regPass').value.trim();
+
+      if(user === "" || pass === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Check if user exists in localStorage
+      if(localStorage.getItem('user_' + user)) {
+        alert("Username already taken!");
+        return;
+      }
+
+      // Save to LocalStorage (Database simulation)
+      localStorage.setItem('user_' + user, pass);
+      alert("Registration Successful! Please Log In.");
+      
+      // Clear inputs and switch to login
+      document.getElementById('regUser').value = "";
+      document.getElementById('regPass').value = "";
+      switchForm('login');
+    });
+
+    // --- B. LOGIN LOGIC ---
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('loginUser').value.trim();
+      const pass = document.getElementById('loginPass').value.trim();
+
+      // Check LocalStorage
+      const storedPass = localStorage.getItem('user_' + user);
+
+      if(storedPass === pass) {
+        // Success
+        overlay.style.display = 'none';
+        phoneShell.classList.remove('app-hidden');
+        alert("Welcome back, " + user + "!");
+      } else {
+        // Fail
+        alert("Invalid Username or Password.");
+      }
+    });
+
+    // --- C. FORGOT PASSWORD LOGIC ---
+    const forgotForm = document.getElementById('forgotForm');
+    forgotForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('forgotUser').value.trim();
+      
+      const storedPass = localStorage.getItem('user_' + user);
+
+      if(storedPass) {
+        // Since we have no email server, we alert the password (simulated recovery)
+        alert("Your password is: " + storedPass);
+        switchForm('login');
+      } else {
+        alert("Username not found.");
+      }
+    });
+  });
+
   // --- Setup Filter Logic ---
   function setupFilter(filterId, containerId, allData) {
     const filter = document.getElementById(filterId);
@@ -1921,39 +1999,11 @@ address: "Sarmiento St. Malabanias, Angeles City, Pampanga",
     setupFilter("routes-city-filter", "routes-list", routes);
   }
 
-  // 6. RENDER NEWS (Big Cards Layout)
-  function renderBigNewsCards() {
-    const container = document.getElementById("news-list");
-    if(container && news && news.length > 0) {
-      container.innerHTML = "";
-      news.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "big-news-card";
-        
-        card.innerHTML = `
-          <div class="big-news-thumb" style="background-image:url('${item.image}')"></div>
-          <div class="big-news-body">
-            <h3 class="big-news-title">${item.name}</h3>
-            <p class="big-news-desc">${item.description}</p>
-          </div>
-        `;
-        
-        card.addEventListener("click", () => openDetail(item));
-        container.appendChild(card);
-      });
-      console.log("Big News Cards rendered:", news.length);
-    }
-  }
-  renderBigNewsCards();
+  // 6. RENDER NEWS (Standard)
+  renderStandardList("news-list", news);
 
   // Fun Fact
   const ffText = document.getElementById('funFactText');
   if(ffText) ffText.textContent = "For two years, Pampanga was once the capital of the Philippines (1762-1764).";
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js")
-      .then(() => console.log("KPMPNGN SW Registered"))
-      .catch(err => console.log("SW Error:", err));
-  });
-}
+});
