@@ -13,7 +13,7 @@ body{
   align-items:center;
   justify-content:center;
   /* Background for the area OUTSIDE the phone */
-  background-image: url('https://as1.ftcdn.net/jpg/02/06/26/08/1000_F_206260811_oPpBC7feTt2UGzrPYMyt0Z9R8bmUatLF.jpg');
+  background-image: url(https://www.vacationhive.com/blog/christmas-destinations-in-the-philippines-top-7-spots-to-visit-and-feel-the-holiday-season/');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -55,7 +55,7 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3); /* Much lighter overlay */
+  background: rgba(0, 0, 0, 0.7); /* 0.7 = Darker, 0.4 = Lighter */
   z-index: 0;
   pointer-events: none;
 }
@@ -291,7 +291,7 @@ h1,h2{margin:0 0 6px 0;}
   align-items: center;
   justify-content: center;
   background: black; 
-  background: url("sandbox:/mnt/data/ParolT.png");
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e0/Giant_Lantern_Festival_2012.jpg');
   background-size: cover;
   background-position: center;
   z-index: 9999;
@@ -339,28 +339,18 @@ h1,h2{margin:0 0 6px 0;}
   font-family: sans-serif; 
 }
 
-.phone-shell {
-   background: transparent !important;
+.login-icon img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 20px 0 40px 0;
+  filter: drop-shadow(0 0 10px rgba(255,255,0,0.5));
 }
-
 
 .input-group {
   width: 100%;
   margin-bottom: 20px;
 }
-
-.brand-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.app-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-}
-
 
 .input-group label {
   display: block;
@@ -534,12 +524,7 @@ h1,h2{margin:0 0 6px 0;}
 }
 
 .login-icon img {
-  width: 80px;
-  height: 80px;
   animation: bounce 1.8s infinite ease-in-out, roll 3s linear infinite;
-  object-fit: contain;
-  margin: 20px 0 40px 0;
-  filter: drop-shadow(0 0 10px rgba(255,255,0,0.5));
 }
 
 @keyframes bounce {
@@ -556,16 +541,3 @@ h1,h2{margin:0 0 6px 0;}
   to { transform: rotate(360deg); }
 }
 
-
-
-/* Fix for clickability - ensure all interactive elements are on top */
-.page, .card, .home-card, .big-news-card, .muni-card, .big-image-card, .nav-btn {
-  position: relative;
-  z-index: 10;
-  pointer-events: auto;
-}
-
-.cards, .home-cards, .big-card-list, #muni-list, #news-list {
-  position: relative;
-  z-index: 10;
-}
